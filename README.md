@@ -9,6 +9,11 @@ This project involves designing and implementing an enterprise Data Warehouse (D
 
 This project was developed for the **Data Warehousing** subject at the **Faculty of Computers and Artificial Intelligence, Cairo University**.
 
+## 🗄️ Source System Physical Model
+The original transactional database (OLTP) consists of 5 normalized tables extracted from the Kaggle dataset.
+
+![Source System ERD](source-erd.png)
+
 ## 🎯 Key Performance Indicators (KPIs)
 The data warehouse is optimized to compute the following strategic metrics:
 * **Average Order Value (AOV):** Tells us how much money customers normally spend when they place an order.
@@ -19,6 +24,8 @@ The data warehouse is optimized to compute the following strategic metrics:
 
 ## 🏗️ Dimensional Model Architecture
 The data warehouse utilizes a **Galaxy Schema (Fact Constellation)** to monitor three primary business processes: Product Sales, Financial Processing, and Fulfillment Lifecycle.
+
+![Galaxy Schema Dimensional Model](galaxy-schema.png)
 
 ### 🔴 Fact Tables
 All fact tables are designed as **Transactional Fact Tables**:
@@ -37,7 +44,7 @@ The schema utilizes 6 distinct Kimball dimension types to avoid redundancy and i
 * **Degenerate Dimensions:** `order_id` and `seller_id` (Stored directly in the fact tables).
 
 ## 🛠️ Tech Stack & Workflow
-* **Data Source:** E-Commerce Kaggle Dataset (CSV/OLTP)
+* **Data Source:** [Ecommerce Order & Supply Chain Dataset](https://www.kaggle.com/) (CSV/OLTP)
 * **ETL Pipeline:** SQL Server Integration Services (SSIS)
 * **Database Engine:** Microsoft SQL Server
 * **Data Modeling:** Eraser.io (Physical & Dimensional ERDs)
@@ -51,5 +58,6 @@ This project is proudly built and maintained by:
 | Data Engineer / DWH Developer | Data Engineer / DWH Developer | Data Engineer / DWH Developer |
 | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mariamehab1305/) | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](#) | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](#) |
 | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white)](https://github.com/Marria-m) | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white)](https://github.com/RahmaBahgat) | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white)](https://github.com/rawdaraafat) |
+
 ---
 *Disclaimer: Do not duplicate or copy this repository for academic submissions as it may trigger plagiarism violations.*

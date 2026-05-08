@@ -1,0 +1,2847 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/8/2026 8:58:56 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="MARIAM"
+  DTS:CreatorName="MARIAM\maria"
+  DTS:DTSID="{E92B7E9E-41EE-42FD-A976-F098C049A50D}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="All_STG_Load"
+  DTS:PackageType="5"
+  DTS:VersionBuild="12"
+  DTS:VersionGUID="{28BD29C8-C5B6-4191-92B2-EA34263A4C40}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[.\SQLEXPRESS.Ecommerce_DWH]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{90D6574F-DB96-4B66-843F-49F94857C1ED}"
+      DTS:ObjectName=".\SQLEXPRESS.Ecommerce_DWH">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=Ecommerce_DWH;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-All_STG_Load-{90D6574F-DB96-4B66-843F-49F94857C1ED}.\SQLEXPRESS.Ecommerce_DWH;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CSV_Customer]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{A46C9086-B95B-4791-822D-C48BC6496C4B}"
+      DTS:ObjectName="CSV_Customer">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\maria\Marie\FCAI\DWH\Assignment\E-CommerceProject\Files&amp;Data\FlatFiles\df_Customers.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="customer_id"
+              DTS:DTSID="{73F8651E-856D-4D83-9623-F538BB06D470}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="10"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="customer_zip_code_prefix"
+              DTS:DTSID="{91B02665-B1E5-4095-8E5A-E2D3E74A0499}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="customer_city"
+              DTS:DTSID="{3273DD9A-B9F9-4360-9FBB-06D2C7918315}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000A_"
+              DTS:MaximumWidth="10"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="customer_state"
+              DTS:DTSID="{C11D5737-28D5-43CA-A5FD-493761311762}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CSV_OrderItems]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{13352301-97FC-4169-AA06-15764F259003}"
+      DTS:ObjectName="CSV_OrderItems">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\maria\Marie\FCAI\DWH\Assignment\E-CommerceProject\Files&amp;Data\FlatFiles\df_OrderItems.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="order_id"
+              DTS:DTSID="{8B8B678A-E060-48F3-AA32-9B8E688F37B4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="product_id"
+              DTS:DTSID="{3742F0DE-A321-45F5-8A21-B21027BBA590}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="seller_id"
+              DTS:DTSID="{ED0FE338-E26D-4C13-9F06-E3B577B2FF79}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="price"
+              DTS:DTSID="{1166E845-7C5F-475D-BDFE-99BD32D6EBAE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="shipping_charges"
+              DTS:DTSID="{E64C9B50-762D-4C3D-99F5-77B4C7BBD5B0}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CSV_Orders]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{243F412B-3B83-4686-9562-81207E38B8CE}"
+      DTS:ObjectName="CSV_Orders">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\maria\Marie\FCAI\DWH\Assignment\E-CommerceProject\Files&amp;Data\FlatFiles\df_Orders.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="order_id"
+              DTS:DTSID="{505DB888-6BBC-49E1-B192-E971E4DDC299}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="customer_id"
+              DTS:DTSID="{0BA4D97C-9DC0-4BBC-BDCF-16B988A327D1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="order_status"
+              DTS:DTSID="{6F952D93-BA86-48F7-90AE-1F5348F6DBB7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="order_purchase_timestamp"
+              DTS:DTSID="{1B27725D-7F7A-4E2A-818B-F53A99191C5E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="order_approved_at"
+              DTS:DTSID="{C88EB3DA-0A81-4926-9AA0-28FD6F931C87}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="order_delivered_timestamp"
+              DTS:DTSID="{C811342D-5D15-448B-B87A-9C3B2CF7BCAB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="order_estimated_delivery_date"
+              DTS:DTSID="{1C725F24-6CF0-4D1E-B806-5A0E4DEBB546}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CSV_Payments]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{BAD0D159-5562-4BD8-87FB-B85923017660}"
+      DTS:ObjectName="CSV_Payments">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\maria\Marie\FCAI\DWH\Assignment\E-CommerceProject\Files&amp;Data\FlatFiles\df_Payments.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="order_id"
+              DTS:DTSID="{0B797E38-DDA1-46C7-A903-4A324D81650F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="payment_sequential"
+              DTS:DTSID="{BBA1C284-37D3-4607-83D8-3E3FB12BF545}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="30"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="payment_type"
+              DTS:DTSID="{716F099C-C580-42EB-A78D-06DBF806D28E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="payment_installments"
+              DTS:DTSID="{62838D97-655A-4B11-AEA9-44E175D97551}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="payment_value"
+              DTS:DTSID="{A85482AA-0B95-4A63-ACB6-0BB3E10F431B}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CSV_Product]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{7D44BD1C-3054-46EB-9A2D-C4FC07433D08}"
+      DTS:ObjectName="CSV_Product">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\maria\Marie\FCAI\DWH\Assignment\E-CommerceProject\Files&amp;Data\FlatFiles\df_Products.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="product_id"
+              DTS:DTSID="{E1109C07-DABC-4E9C-8980-0036DA0BE7ED}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="product_category_name"
+              DTS:DTSID="{946AE97B-FC32-439F-8C02-F5D6AB0C3020}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="product_weight_g"
+              DTS:DTSID="{3331A79C-4D85-43EE-9F63-EF8A41BEADC4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="product_length_cm"
+              DTS:DTSID="{46E25B10-E73B-4DB7-BD6B-2A7AC7F220D8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="product_height_cm"
+              DTS:DTSID="{118926DF-6428-4C6B-AD5F-C034719B461D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="product_width_cm"
+              DTS:DTSID="{F636D00B-74FE-4E05-A1B6-B030899CDF71}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load All STG Tables"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{3514D247-F5B1-4370-BF6A-A74540C6F441}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load All STG Tables">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load All STG Tables\Load STG_Customer"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{F50928AB-DF89-4C19-83EE-46AEB37E9125}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load STG_Customer"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="1033"
+                  name="CSV_Customer"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[CSV_Customer]"
+                      connectionManagerRefId="Package.ConnectionManagers[CSV_Customer]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Output].Columns[customer_id]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Output].ExternalColumns[customer_id]"
+                          length="50"
+                          lineageId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Output].Columns[customer_id]"
+                          name="customer_id"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Output].Columns[customer_zip_code_prefix]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Output].ExternalColumns[customer_zip_code_prefix]"
+                          length="10"
+                          lineageId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Output].Columns[customer_zip_code_prefix]"
+                          name="customer_zip_code_prefix"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Output].Columns[customer_city]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Output].ExternalColumns[customer_city]"
+                          length="50"
+                          lineageId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Output].Columns[customer_city]"
+                          name="customer_city"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Output].Columns[customer_state]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Output].ExternalColumns[customer_state]"
+                          length="10"
+                          lineageId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Output].Columns[customer_state]"
+                          name="customer_state"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Output].ExternalColumns[customer_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="customer_id" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Output].ExternalColumns[customer_zip_code_prefix]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="customer_zip_code_prefix" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Output].ExternalColumns[customer_city]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="customer_city" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Output].ExternalColumns[customer_state]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="customer_state" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="1252"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load All STG Tables\Load STG_Customer\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[STG].[Customer]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load All STG Tables\Load STG_Customer\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[.\SQLEXPRESS.Ecommerce_DWH]"
+                      connectionManagerRefId="Package.ConnectionManagers[.\SQLEXPRESS.Ecommerce_DWH]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load All STG Tables\Load STG_Customer\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load All STG Tables\Load STG_Customer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[customer_id]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="customer_id"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_id]"
+                          lineageId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Output].Columns[customer_id]" />
+                        <inputColumn
+                          refId="Package\Load All STG Tables\Load STG_Customer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[customer_zip_code_prefix]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="10"
+                          cachedName="customer_zip_code_prefix"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_zip_code_prefix]"
+                          lineageId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Output].Columns[customer_zip_code_prefix]" />
+                        <inputColumn
+                          refId="Package\Load All STG Tables\Load STG_Customer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[customer_city]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="customer_city"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_city]"
+                          lineageId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Output].Columns[customer_city]" />
+                        <inputColumn
+                          refId="Package\Load All STG Tables\Load STG_Customer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[customer_state]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="10"
+                          cachedName="customer_state"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_state]"
+                          lineageId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Output].Columns[customer_state]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="customer_id" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_zip_code_prefix]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="customer_zip_code_prefix" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_city]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="customer_city" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_state]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="customer_state" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
+                          dataType="dbTimeStamp"
+                          name="create_timestamp" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load All STG Tables\Load STG_Customer\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load All STG Tables\Load STG_Customer\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Customer\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load All STG Tables\Load STG_Customer\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Customer\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load All STG Tables\Load STG_Customer\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load All STG Tables\Load STG_Customer.Paths[Flat File Source Output]"
+                  endId="Package\Load All STG Tables\Load STG_Customer\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="Flat File Source Output"
+                  startId="Package\Load All STG Tables\Load STG_Customer\CSV_Customer.Outputs[Flat File Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load All STG Tables\Load STG_OrderItems"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{0CAD685E-75D3-40C4-B25B-D59143E244F3}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load STG_OrderItems"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="1033"
+                  name="CSV_OrderItems"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[CSV_OrderItems]"
+                      connectionManagerRefId="Package.ConnectionManagers[CSV_OrderItems]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Output].Columns[order_id]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Output].ExternalColumns[order_id]"
+                          length="50"
+                          lineageId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Output].Columns[order_id]"
+                          name="order_id"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Output].Columns[product_id]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Output].ExternalColumns[product_id]"
+                          length="50"
+                          lineageId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Output].Columns[product_id]"
+                          name="product_id"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Output].Columns[seller_id]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Output].ExternalColumns[seller_id]"
+                          length="50"
+                          lineageId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Output].Columns[seller_id]"
+                          name="seller_id"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Output].Columns[price]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Output].ExternalColumns[price]"
+                          length="50"
+                          lineageId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Output].Columns[price]"
+                          name="price"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Output].Columns[shipping_charges]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Output].ExternalColumns[shipping_charges]"
+                          length="50"
+                          lineageId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Output].Columns[shipping_charges]"
+                          name="shipping_charges"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Output].ExternalColumns[order_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="order_id" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Output].ExternalColumns[product_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="product_id" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Output].ExternalColumns[seller_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="seller_id" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Output].ExternalColumns[price]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="price" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Output].ExternalColumns[shipping_charges]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="shipping_charges" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="1252"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[STG].[OrderItems]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[.\SQLEXPRESS.Ecommerce_DWH]"
+                      connectionManagerRefId="Package.ConnectionManagers[.\SQLEXPRESS.Ecommerce_DWH]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[order_id]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="order_id"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_id]"
+                          lineageId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Output].Columns[order_id]" />
+                        <inputColumn
+                          refId="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[product_id]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="product_id"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_id]"
+                          lineageId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Output].Columns[product_id]" />
+                        <inputColumn
+                          refId="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[seller_id]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="seller_id"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[seller_id]"
+                          lineageId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Output].Columns[seller_id]" />
+                        <inputColumn
+                          refId="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[price]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="price"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[price]"
+                          lineageId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Output].Columns[price]" />
+                        <inputColumn
+                          refId="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[shipping_charges]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="shipping_charges"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[shipping_charges]"
+                          lineageId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Output].Columns[shipping_charges]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="order_id" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="product_id" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[seller_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="seller_id" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[price]"
+                          dataType="r8"
+                          name="price" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[shipping_charges]"
+                          dataType="r8"
+                          name="shipping_charges" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
+                          dataType="dbTimeStamp"
+                          name="create_timestamp" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load All STG Tables\Load STG_OrderItems.Paths[Flat File Source Output]"
+                  endId="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="Flat File Source Output"
+                  startId="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems.Outputs[Flat File Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load All STG Tables\Load STG_Orders"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{6AF9CEA0-B732-4EBF-B2CB-6CD6DA25E2D3}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load STG_Orders"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="1033"
+                  name="CSV_Orders"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">true</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[CSV_Orders]"
+                      connectionManagerRefId="Package.ConnectionManagers[CSV_Orders]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].Columns[order_id]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].ExternalColumns[order_id]"
+                          length="50"
+                          lineageId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].Columns[order_id]"
+                          name="order_id"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].Columns[customer_id]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].ExternalColumns[customer_id]"
+                          length="50"
+                          lineageId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].Columns[customer_id]"
+                          name="customer_id"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].Columns[order_status]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].ExternalColumns[order_status]"
+                          length="50"
+                          lineageId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].Columns[order_status]"
+                          name="order_status"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].Columns[order_purchase_timestamp]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].ExternalColumns[order_purchase_timestamp]"
+                          length="50"
+                          lineageId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].Columns[order_purchase_timestamp]"
+                          name="order_purchase_timestamp"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].Columns[order_approved_at]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].ExternalColumns[order_approved_at]"
+                          length="50"
+                          lineageId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].Columns[order_approved_at]"
+                          name="order_approved_at"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].Columns[order_delivered_timestamp]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].ExternalColumns[order_delivered_timestamp]"
+                          length="50"
+                          lineageId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].Columns[order_delivered_timestamp]"
+                          name="order_delivered_timestamp"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].Columns[order_estimated_delivery_date]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].ExternalColumns[order_estimated_delivery_date]"
+                          length="50"
+                          lineageId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].Columns[order_estimated_delivery_date]"
+                          name="order_estimated_delivery_date"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].ExternalColumns[order_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="order_id" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].ExternalColumns[customer_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="customer_id" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].ExternalColumns[order_status]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="order_status" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].ExternalColumns[order_purchase_timestamp]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="order_purchase_timestamp" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].ExternalColumns[order_approved_at]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="order_approved_at" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].ExternalColumns[order_delivered_timestamp]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="order_delivered_timestamp" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].ExternalColumns[order_estimated_delivery_date]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="order_estimated_delivery_date" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="1252"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load All STG Tables\Load STG_Orders\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[STG].[Orders]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load All STG Tables\Load STG_Orders\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[.\SQLEXPRESS.Ecommerce_DWH]"
+                      connectionManagerRefId="Package.ConnectionManagers[.\SQLEXPRESS.Ecommerce_DWH]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load All STG Tables\Load STG_Orders\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[order_id]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="order_id"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_id]"
+                          lineageId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].Columns[order_id]" />
+                        <inputColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[customer_id]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="customer_id"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_id]"
+                          lineageId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].Columns[customer_id]" />
+                        <inputColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[order_purchase_timestamp]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="order_purchase_timestamp"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_purchase_timestamp]"
+                          lineageId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].Columns[order_purchase_timestamp]" />
+                        <inputColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[order_approved_at]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="order_approved_at"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_approved_at]"
+                          lineageId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output].Columns[order_approved_at]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="order_id" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="customer_id" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_purchase_timestamp]"
+                          dataType="dbTimeStamp"
+                          name="order_purchase_timestamp" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_approved_at]"
+                          dataType="dbTimeStamp"
+                          name="order_approved_at" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
+                          dataType="dbTimeStamp"
+                          name="create_timestamp" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load All STG Tables\Load STG_Orders\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load All STG Tables\Load STG_Orders\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load All STG Tables\Load STG_Orders\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Orders\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load All STG Tables\Load STG_Orders\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load All STG Tables\Load STG_Orders.Paths[Flat File Source Output]"
+                  endId="Package\Load All STG Tables\Load STG_Orders\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="Flat File Source Output"
+                  startId="Package\Load All STG Tables\Load STG_Orders\CSV_Orders.Outputs[Flat File Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load All STG Tables\Load STG_Payments"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{0F83BFF1-DB92-4845-A19B-5B35603C3409}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load STG_Payments"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="1033"
+                  name="CSV_Payments"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[CSV_Payments]"
+                      connectionManagerRefId="Package.ConnectionManagers[CSV_Payments]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Output].Columns[order_id]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Output].ExternalColumns[order_id]"
+                          length="50"
+                          lineageId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Output].Columns[order_id]"
+                          name="order_id"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Output].Columns[payment_sequential]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Output].ExternalColumns[payment_sequential]"
+                          length="50"
+                          lineageId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Output].Columns[payment_sequential]"
+                          name="payment_sequential"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Output].Columns[payment_type]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Output].ExternalColumns[payment_type]"
+                          length="30"
+                          lineageId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Output].Columns[payment_type]"
+                          name="payment_type"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Output].Columns[payment_installments]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Output].ExternalColumns[payment_installments]"
+                          length="50"
+                          lineageId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Output].Columns[payment_installments]"
+                          name="payment_installments"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Output].Columns[payment_value]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Output].ExternalColumns[payment_value]"
+                          length="50"
+                          lineageId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Output].Columns[payment_value]"
+                          name="payment_value"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Output].ExternalColumns[order_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="order_id" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Output].ExternalColumns[payment_sequential]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="payment_sequential" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Output].ExternalColumns[payment_type]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          name="payment_type" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Output].ExternalColumns[payment_installments]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="payment_installments" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Output].ExternalColumns[payment_value]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="payment_value" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="1252"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[STG].[Payments]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[.\SQLEXPRESS.Ecommerce_DWH]"
+                      connectionManagerRefId="Package.ConnectionManagers[.\SQLEXPRESS.Ecommerce_DWH]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[order_id]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="order_id"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_id]"
+                          lineageId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Output].Columns[order_id]" />
+                        <inputColumn
+                          refId="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[payment_sequential]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="payment_sequential"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[payment_sequential]"
+                          lineageId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Output].Columns[payment_sequential]" />
+                        <inputColumn
+                          refId="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[payment_type]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="30"
+                          cachedName="payment_type"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[payment_type]"
+                          lineageId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Output].Columns[payment_type]" />
+                        <inputColumn
+                          refId="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[payment_installments]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="payment_installments"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[payment_installments]"
+                          lineageId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Output].Columns[payment_installments]" />
+                        <inputColumn
+                          refId="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[payment_value]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="payment_value"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[payment_value]"
+                          lineageId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Output].Columns[payment_value]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="order_id" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[payment_sequential]"
+                          dataType="i4"
+                          name="payment_sequential" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[payment_type]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          name="payment_type" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[payment_installments]"
+                          dataType="i4"
+                          name="payment_installments" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[payment_value]"
+                          dataType="r8"
+                          name="payment_value" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
+                          dataType="dbTimeStamp"
+                          name="create_timestamp" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load All STG Tables\Load STG_Payments.Paths[Flat File Source Output]"
+                  endId="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="Flat File Source Output"
+                  startId="Package\Load All STG Tables\Load STG_Payments\CSV_Payments.Outputs[Flat File Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load All STG Tables\Load STG_Product"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{42AF5154-0687-43FD-9815-457831CA4271}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load STG_Product"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load All STG Tables\Load STG_Product\CSV_Product"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="1033"
+                  name="CSV_Product"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">true</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[CSV_Product]"
+                      connectionManagerRefId="Package.ConnectionManagers[CSV_Product]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].Columns[product_id]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].ExternalColumns[product_id]"
+                          length="50"
+                          lineageId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].Columns[product_id]"
+                          name="product_id"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].Columns[product_category_name]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].ExternalColumns[product_category_name]"
+                          length="50"
+                          lineageId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].Columns[product_category_name]"
+                          name="product_category_name"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].Columns[product_weight_g]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].ExternalColumns[product_weight_g]"
+                          length="50"
+                          lineageId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].Columns[product_weight_g]"
+                          name="product_weight_g"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].Columns[product_length_cm]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].ExternalColumns[product_length_cm]"
+                          length="50"
+                          lineageId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].Columns[product_length_cm]"
+                          name="product_length_cm"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].Columns[product_height_cm]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].ExternalColumns[product_height_cm]"
+                          length="50"
+                          lineageId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].Columns[product_height_cm]"
+                          name="product_height_cm"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].Columns[product_width_cm]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].ExternalColumns[product_width_cm]"
+                          length="50"
+                          lineageId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].Columns[product_width_cm]"
+                          name="product_width_cm"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].ExternalColumns[product_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="product_id" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].ExternalColumns[product_category_name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="product_category_name" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].ExternalColumns[product_weight_g]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="product_weight_g" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].ExternalColumns[product_length_cm]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="product_length_cm" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].ExternalColumns[product_height_cm]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="product_height_cm" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].ExternalColumns[product_width_cm]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="product_width_cm" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="1252"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[STG].[Product]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[.\SQLEXPRESS.Ecommerce_DWH]"
+                      connectionManagerRefId="Package.ConnectionManagers[.\SQLEXPRESS.Ecommerce_DWH]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[product_id]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="product_id"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_id]"
+                          lineageId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].Columns[product_id]" />
+                        <inputColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[product_category_name]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="product_category_name"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_category_name]"
+                          lineageId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].Columns[product_category_name]" />
+                        <inputColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[product_weight_g]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="product_weight_g"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_weight_g]"
+                          lineageId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].Columns[product_weight_g]" />
+                        <inputColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[product_length_cm]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="product_length_cm"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_length_cm]"
+                          lineageId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].Columns[product_length_cm]" />
+                        <inputColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[product_height_cm]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="product_height_cm"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_height_cm]"
+                          lineageId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].Columns[product_height_cm]" />
+                        <inputColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[product_width_cm]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="product_width_cm"
+                          externalMetadataColumnId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_width_cm]"
+                          lineageId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output].Columns[product_width_cm]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="product_id" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_category_name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="product_category_name" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_weight_g]"
+                          dataType="r8"
+                          name="product_weight_g" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_length_cm]"
+                          dataType="r8"
+                          name="product_length_cm" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_height_cm]"
+                          dataType="r8"
+                          name="product_height_cm" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_width_cm]"
+                          dataType="r8"
+                          name="product_width_cm" />
+                        <externalMetadataColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
+                          dataType="dbTimeStamp"
+                          name="create_timestamp" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load All STG Tables\Load STG_Product.Paths[Flat File Source Output]"
+                  endId="Package\Load All STG Tables\Load STG_Product\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="Flat File Source Output"
+                  startId="Package\Load All STG Tables\Load STG_Product\CSV_Product.Outputs[Flat File Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate All STG Tables"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{5B1B49FB-F6BE-4931-9027-181737B39141}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate All STG Tables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{90D6574F-DB96-4B66-843F-49F94857C1ED}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE STG.Customer;&#xA;TRUNCATE TABLE STG.Orders;&#xA;TRUNCATE TABLE STG.Product;&#xA;TRUNCATE TABLE STG.OrderItems;&#xA;TRUNCATE TABLE STG.Payments;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update ETL Watermark"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{EE605C48-98A6-4C15-B774-DA5E466A3FCA}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update ETL Watermark"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{90D6574F-DB96-4B66-843F-49F94857C1ED}"
+          SQLTask:SqlStatementSource="UPDATE STG.etl_watermark &#xA;SET last_extract_date = GETDATE();" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{47EF0E8F-DCBF-4D0F-9EF4-3654552D7DCA}"
+      DTS:From="Package\Truncate All STG Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load All STG Tables" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{1A36BB2E-B915-494C-BAEA-2BBB5CD97BD7}"
+      DTS:From="Package\Load All STG Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Update ETL Watermark" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="192,41.6"
+          Id="Package\Truncate All STG Tables"
+          TopLeft="362.499980193874,50.2666663171186" />
+        <NodeLayout
+          Size="176.8,41.6"
+          Id="Package\Load All STG Tables\Load STG_Customer"
+          TopLeft="18.1666549651163,21.9333312782315" />
+        <NodeLayout
+          Size="167.2,41.6"
+          Id="Package\Load All STG Tables\Load STG_Product"
+          TopLeft="23.8333323316442,90.3999974687893" />
+        <NodeLayout
+          Size="163.2,41.6"
+          Id="Package\Load All STG Tables\Load STG_Orders"
+          TopLeft="245.633309247263,91.2666641294293" />
+        <NodeLayout
+          Size="183.2,41.6"
+          Id="Package\Load All STG Tables\Load STG_OrderItems"
+          TopLeft="125.633315803774,155.399997016787" />
+        <NodeLayout
+          Size="177.6,41.6"
+          Id="Package\Load All STG Tables\Load STG_Payments"
+          TopLeft="235.633309793639,22.7999979388717" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="427.2,231.2"
+          Size="427.2,274.4"
+          Id="Package\Load All STG Tables"
+          TopLeft="246.666653189394,151.666665611995" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="459.383316691634,91.8666663171186">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.7999992948769"
+              Start="0,0"
+              End="0,52.2999992948769">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.2999992948769" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="187.2,41.6"
+          Id="Package\Update ETL Watermark"
+          TopLeft="372.499979647498,479.266663333906" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="463.183316418446,426.066665611995">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53.1999977219107"
+              Start="0,0"
+              End="0,45.6999977219107">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.6999977219107" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load All STG Tables\Load STG_Customer">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Load All STG Tables\Load STG_Customer\CSV_Customer"
+          TopLeft="268.307688309596,78.3846142165936" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Load All STG Tables\Load STG_Customer\OLE DB Destination"
+          TopLeft="258.461534610161,166.923074435729" />
+        <EdgeLayout
+          Id="Package\Load All STG Tables\Load STG_Customer.Paths[Flat File Source Output]"
+          TopLeft="343.784611459879,119.984614216594">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46.9384602191356"
+              Start="0,0"
+              End="0,39.4384602191356">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.4384602191356" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Load All STG Tables\Load STG_Product">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="141.6,41.6"
+          Id="Package\Load All STG Tables\Load STG_Product\CSV_Product"
+          TopLeft="326.666648818388,117.866665847037" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Load All STG Tables\Load STG_Product\OLE DB Destination"
+          TopLeft="310.833316350149,210.599998535514" />
+        <EdgeLayout
+          Id="Package\Load All STG Tables\Load STG_Product.Paths[Flat File Source Output]"
+          TopLeft="396.949982584268,159.466665847037">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51.1333326884773"
+              Start="0,0"
+              End="0,43.6333326884773">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.6333326884773" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Load All STG Tables\Load STG_Orders">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="137.6,41.6"
+          Id="Package\Load All STG Tables\Load STG_Orders\CSV_Orders"
+          TopLeft="279.999995827675,125.999998122454" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Load All STG Tables\Load STG_Orders\OLE DB Destination"
+          TopLeft="266.99999602139,220.999996706843" />
+        <EdgeLayout
+          Id="Package\Load All STG Tables\Load STG_Orders.Paths[Flat File Source Output]"
+          TopLeft="350.699995924532,167.599998122454">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53.3999985843897"
+              Start="0,0"
+              End="0,45.8999985843897">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.8999985843897" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Load All STG Tables\Load STG_OrderItems">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="157.6,41.6"
+          Id="Package\Load All STG Tables\Load STG_OrderItems\CSV_OrderItems"
+          TopLeft="312.999995335937,172.999997422099" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination"
+          TopLeft="307.999995410442,273.999995917082" />
+        <EdgeLayout
+          Id="Package\Load All STG Tables\Load STG_OrderItems.Paths[Flat File Source Output]"
+          TopLeft="392.699995373189,214.599997422099">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.3999984949827"
+              Start="0,0"
+              End="0,51.8999984949827">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.8999984949827" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Load All STG Tables\Load STG_Payments">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,41.6"
+          Id="Package\Load All STG Tables\Load STG_Payments\CSV_Payments"
+          TopLeft="270.076919052463,102.153844631635" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination"
+          TopLeft="263.461534535655,209.692304567649" />
+        <EdgeLayout
+          Id="Package\Load All STG Tables\Load STG_Payments.Paths[Flat File Source Output]"
+          TopLeft="347.569226794059,143.753844631635">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,65.9384599360136"
+              Start="0,0"
+              End="0,58.4384599360136">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.4384599360136" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load All STG Tables\Load STG_Customer\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load All STG Tables\Load STG_Payments\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load All STG Tables\Load STG_Product\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load All STG Tables\Load STG_Orders\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load All STG Tables\Load STG_OrderItems\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

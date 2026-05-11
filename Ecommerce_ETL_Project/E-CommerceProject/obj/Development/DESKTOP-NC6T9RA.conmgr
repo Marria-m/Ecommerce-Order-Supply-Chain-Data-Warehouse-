@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="DESKTOP-NC6T9RA"
+  DTS:DTSID="{CCE1EB9D-8324-4414-A1F2-0144CC4DD264}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=DESKTOP-NC6T9RA;Initial Catalog=Ecommerce_DWH;Provider=MSOLEDBSQL19.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Load_Dim_PaymentType-{CCE1EB9D-8324-4414-A1F2-0144CC4DD264}DESKTOP-NC6T9RA;Trust Server Certificate=True;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
